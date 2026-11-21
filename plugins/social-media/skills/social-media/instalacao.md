@@ -5,7 +5,9 @@ Os menus do Claude podem aparecer em português ou em inglês: os dois nomes est
 
 ## A skill
 Se você está lendo isto, a skill já está instalada nesta conversa. Esta parte serve para quando a pessoa quer instalar em outro app, atualizar, ou quando ela te mandou só o guia em PDF.
-Arquivo: social-media.zip (o link está no guia). A pasta de dentro se chama social-media.
+A skill fica no GitHub: github.com/promptepipoca/skills
+Zip para baixar: https://github.com/promptepipoca/skills/releases/latest/download/social-media.zip (a pasta de dentro se chama social-media).
+Use um caminho só por app: plugin ou zip. Os dois juntos deixam a skill duplicada.
 
 - **Claude no navegador, no app do computador ou no Cowork:**
   1. Configurações → Recursos (Settings → Capabilities): ligar "Criar e editar arquivos" (Create and edit files).
@@ -13,11 +15,21 @@ Arquivo: social-media.zip (o link está no guia). A pasta de dentro se chama soc
   3. Botão "+" → Criar habilidade (Create skill) → Fazer upload de uma habilidade (Upload a skill) → escolher o social-media.zip, sem descompactar.
   4. Conferir se a skill ficou ligada na lista.
   Para atualizar: apagar a social-media antiga na lista (abrir a skill → "..." → Excluir) e enviar o zip novo.
-- **Claude Code:** a pasta fica em ~/.claude/skills/social-media/. Rodar na pasta onde o zip foi baixado (normalmente Downloads).
+- **Claude Code (caminho recomendado: plugin do GitHub).** Já traz a skill e a ligação com a Replin.
+  - Dentro do Claude Code: `/plugin marketplace add promptepipoca/skills` e depois `/plugin install social-media@promptepipoca`.
+  - Ou no terminal: `claude plugin marketplace add promptepipoca/skills` e depois `claude plugin install social-media@promptepipoca`.
+  Abrir uma sessão nova. Para chamar pelo nome: /social-media:social-media. Falta só autorizar a Replin (seção Replin abaixo).
+  Para atualizar: `claude plugin marketplace update promptepipoca` e depois `claude plugin update social-media@promptepipoca`.
+- **Claude Code pelo zip (se não quiser o plugin):** a pasta fica em ~/.claude/skills/social-media/. Rodar na pasta onde o zip foi baixado (normalmente Downloads).
   - Mac/Linux: `cd ~/Downloads && mkdir -p ~/.claude/skills && unzip -o social-media.zip -d ~/.claude/skills/`
   - Windows (PowerShell): `cd $HOME\Downloads; Expand-Archive social-media.zip -DestinationPath $HOME\.claude\skills -Force`
   Abrir uma sessão nova do Claude Code. Para chamar pelo nome: /social-media.
-- **Codex e app do ChatGPT no computador:** os dois leem a mesma pasta, ~/.agents/skills/social-media/.
+- **Codex (caminho recomendado: plugin do GitHub).** Já traz a skill e a ligação com a Replin. No terminal:
+  `codex plugin marketplace add promptepipoca/skills` e depois `codex plugin add social-media@promptepipoca`.
+  Abrir uma conversa nova. Para chamar a skill: digitar $ e escolher social-media na lista. Falta só autorizar a Replin (seção Replin abaixo).
+  Para atualizar: `codex plugin marketplace upgrade promptepipoca`.
+  O app do ChatGPT no computador divide a configuração com o Codex. Segundo a documentação da OpenAI, a fonte "Prompt & Pipoca" aparece em Plugins depois do comando acima; se não aparecer, use o zip.
+- **Codex e app do ChatGPT pelo zip:** os dois leem a mesma pasta, ~/.agents/skills/social-media/.
   - Mac/Linux: `cd ~/Downloads && mkdir -p ~/.agents/skills && unzip -o social-media.zip -d ~/.agents/skills/`
   - Windows (PowerShell): `cd $HOME\Downloads; Expand-Archive social-media.zip -DestinationPath $HOME\.agents\skills -Force`
   Sem terminal: descompactar o zip e mover a pasta social-media para dentro de .agents/skills, na pasta de usuário (no Windows, C:\Users\[seu usuário]\.agents\skills; criar as pastas se não existirem).
@@ -27,7 +39,7 @@ Arquivo: social-media.zip (o link está no guia). A pasta de dentro se chama soc
 - **Outro app compatível com Agent Skills** (o formato aberto de pasta com SKILL.md): colocar a pasta social-media onde o app procura skills. Veja a documentação do app.
 - **App sem suporte a skills:** a pessoa pode anexar os arquivos .md da pasta no começo da conversa. Funciona, mas precisa anexar de novo a cada conversa.
 
-Se você tem acesso a arquivos e terminal no computador da pessoa, pode baixar o zip e fazer a cópia você mesmo, depois de mostrar o comando e a pessoa concordar. Anexo de conversa nem sempre fica no computador dela: se a cópia falhar, não insista. Passe o caminho manual acima ou use o modo anexo.
+Se você tem terminal no computador da pessoa (Claude Code, Codex), pode rodar os comandos do plugin você mesmo, depois de mostrar o comando e a pessoa concordar. Sem plugin, pode baixar o zip do endereço acima e fazer a cópia, com o mesmo cuidado. Anexo de conversa nem sempre fica no computador dela: se a cópia falhar, não insista. Passe o caminho manual acima ou use o modo anexo.
 
 ### Modo anexo (quando não dá para instalar)
 Se a pessoa anexou o social-media.zip na conversa e você consegue abrir arquivos:
@@ -43,9 +55,9 @@ Primeiro, fora do assistente (só a pessoa faz):
 
 Depois, ligar a Replin no app. O endereço é sempre o mesmo: https://api.replin.com.br/mcp
 - **Claude no navegador/app:** Personalizar → Conectores (Customize → Connectors) → Descobrir (Browse), procurar Replin → Conectar → entrar na Replin e Permitir. Não achou: Adicionar → Conector personalizado (Add custom connector), nome Replin, colar o endereço.
-- **Claude Code:** `claude mcp add --scope user --transport http replin https://api.replin.com.br/mcp`, depois, dentro do Claude Code, `/mcp` → replin → entrar e autorizar no navegador.
+- **Claude Code:** se instalou pelo plugin, a Replin já veio: dentro do Claude Code, `/mcp` → replin → entrar e autorizar no navegador. Se instalou pelo zip: `claude mcp add --scope user --transport http replin https://api.replin.com.br/mcp` e depois o mesmo `/mcp`.
 - **App do ChatGPT no computador:** Configurações (Settings) → Servidores MCP (MCP servers) → Adicionar servidor (Add server) → nome replin, tipo Streamable HTTP, colar o endereço → Salvar → Reiniciar (Restart). Na lista, clicar em Autenticar (Authenticate) e entrar na Replin. Para conferir: digitar /mcp no campo de mensagem.
-- **Codex (terminal):** `codex mcp add replin --url https://api.replin.com.br/mcp`. Se não abrir o login sozinho: `codex mcp login replin` e autorizar no navegador. O app do ChatGPT no computador e o Codex dividem a mesma configuração: ligou em um, vale para o outro.
+- **Codex (terminal):** se instalou pelo plugin, a Replin já veio: só `codex mcp login replin` e autorizar no navegador. Se instalou pelo zip: `codex mcp add replin --url https://api.replin.com.br/mcp`. Se não abrir o login sozinho: `codex mcp login replin` e autorizar no navegador. O app do ChatGPT no computador e o Codex dividem a mesma configuração: ligou em um, vale para o outro.
 - **ChatGPT no navegador ou no celular:** lá os conectores só entram por plugins. Sem a Replin, siga com os números colados pela pessoa.
 - **Outro app:** qualquer app compatível com conectores MCP aceita o mesmo endereço, segundo a Replin.
 
