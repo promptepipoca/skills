@@ -21,15 +21,25 @@ Funciona no Claude (site, app e Cowork), no Claude Code, no Codex e no app do Ch
 /plugin install social-media@promptepipoca
 ```
 
-O plugin já traz a conexão com a Replin. Depois de instalar, rode `/mcp`, escolha `replin` e autorize no navegador.
+O plugin já traz a conexão com a Replin. Depois de instalar, abra uma sessão nova, rode `/mcp`, escolha `replin` e autorize no navegador. Para chamar a skill: `/social-media:social-media`.
 
-### Codex e app do ChatGPT no computador
+Para atualizar: `claude plugin marketplace update promptepipoca` e depois `claude plugin update social-media@promptepipoca`.
+
+### Codex
 
 ```
 codex plugin marketplace add promptepipoca/skills
+codex plugin add social-media@promptepipoca
+codex mcp login replin
 ```
 
-Depois abra o app, vá em Plugins, escolha a fonte **Prompt & Pipoca** e instale o **social-media**.
+O plugin já traz a conexão com a Replin; o último comando abre o navegador para você autorizar. Numa conversa nova, digite `$` e escolha `social-media`.
+
+Para atualizar: `codex plugin marketplace upgrade promptepipoca`.
+
+### App do ChatGPT no computador
+
+Use a instalação manual abaixo (pasta `~/.agents/skills/`).
 
 ### Claude (site, app ou Cowork)
 
@@ -63,6 +73,8 @@ Etapa atual: ...   Próxima: ...   Só avanço com o seu ok.
 ```
 
 Ela faz uma etapa por vez e pergunta "Posso seguir?" antes da próxima. Se o painel não aparecer, a skill não está sendo usada: chame pelo nome (`/social-media:social-media` no Claude Code, `$social-media` no Codex, `@social-media` no ChatGPT).
+
+Use um caminho só por app (plugin ou zip). Os dois juntos deixam a skill repetida.
 
 Na primeira conversa ela monta a sua **ficha** (quem você é, como grava, o que já foi feito). Nas seguintes ela lê a ficha e segue de onde parou.
 
