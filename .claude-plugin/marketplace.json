@@ -1,0 +1,14 @@
+{
+  "name": "promptepipoca",
+  "description": "Skills grátis do Prompt & Pipoca",
+  "owner": {
+    "name": "Prompt & Pipoca"
+  },
+  "plugins": [
+    {
+      "name": "social-media",
+      "source": "./plugins/social-media",
+      "description": "Social media do Instagram dentro do seu assistente de IA: analisa o perfil, lê os números reais da conta, monta a pauta da semana, escreve roteiro, carrossel, legenda e o direct automático do \"comenta X\"."
+    }
+  ]
+}
