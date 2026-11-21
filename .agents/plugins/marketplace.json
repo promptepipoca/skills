@@ -1,0 +1,20 @@
+{
+  "name": "promptepipoca",
+  "interface": {
+    "displayName": "Prompt & Pipoca"
+  },
+  "plugins": [
+    {
+      "name": "social-media",
+      "source": {
+        "source": "local",
+        "path": "./plugins/social-media"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
